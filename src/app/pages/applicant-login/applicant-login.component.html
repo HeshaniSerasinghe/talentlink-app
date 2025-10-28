@@ -1,0 +1,142 @@
+<div class="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full">
+    <!-- Logo/Header Section -->
+    <div class="text-center mb-8">
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-primary rounded-full mb-4">
+        <span class="text-2xl text-white font-bold">TL</span>
+      </div>
+      <h1 class="text-3xl font-bold text-primary mb-2">Applicant Login</h1>
+      <p class="text-sm text-gray-500">Sign in to your applicant account</p>
+    </div>
+
+    <!-- Login Card -->
+    <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+      <!-- Error Message -->
+      <div
+        *ngIf="errorMessage"
+        class="mb-5 p-3.5 bg-error bg-opacity-10 border border-error rounded-md"
+      >
+        <p class="text-sm text-error font-medium">{{ errorMessage }}</p>
+      </div>
+
+      <!-- Login Form -->
+      <form (ngSubmit)="onSubmit()">
+        <!-- Email Field -->
+        <div class="mb-5">
+          <label for="email" class="block text-sm font-medium text-primary mb-2">
+            Email Address <span class="text-error">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            [(ngModel)]="email"
+            name="email"
+            placeholder="e.g., john.doe@example.com"
+            required
+            class="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm"
+          />
+        </div>
+
+        <!-- Password Field -->
+        <div class="mb-5">
+          <label for="password" class="block text-sm font-medium text-primary mb-2">
+            Password <span class="text-error">*</span>
+          </label>
+          <div class="relative">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="password"
+              [(ngModel)]="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+              class="w-full px-4 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all text-sm pr-12"
+            />
+            <button
+              type="button"
+              (click)="togglePasswordVisibility()"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-primary transition-colors"
+            >
+              <span *ngIf="!showPassword">👁️</span>
+              <span *ngIf="showPassword">👁️‍🗨️</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="flex items-center justify-between mb-6">
+          <label class="flex items-center cursor-pointer">
+            <input
+              type="checkbox"
+              [(ngModel)]="rememberMe"
+              name="rememberMe"
+              class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
+            />
+            <span class="ml-2 text-sm text-gray-700">Remember me</span>
+          </label>
+          <button
+            type="button"
+            (click)="forgotPassword()"
+            class="text-sm text-primary hover:text-primary-variant font-medium transition-colors"
+          >
+            Forgot Password?
+          </button>
+        </div>
+
+        <!-- Login Button -->
+        <button
+          type="submit"
+          class="w-full bg-primary text-white font-medium py-2.5 rounded-md hover:bg-primary-variant transition-colors text-sm mb-4"
+        >
+          Sign In
+        </button>
+
+        <!-- Divider -->
+        <div class="relative my-6">
+          <div class="absolute inset-0 flex items-center">
+            <div class="w-full border-t border-gray-200"></div>
+          </div>
+          <div class="relative flex justify-center text-xs">
+            <span class="px-3 bg-white text-gray-400">or</span>
+          </div>
+        </div>
+
+        <!-- Switch to Employee Login -->
+        <div class="text-center">
+          <p class="text-sm text-gray-600">
+            Are you an employee?
+            <a
+              routerLink="/employee-login"
+              class="text-primary hover:text-primary-variant font-medium transition-colors ml-1"
+            >
+              Login here
+            </a>
+          </p>
+        </div>
+
+        <!-- Sign Up Link -->
+        <div class="text-center mt-3">
+          <p class="text-sm text-gray-600">
+            Don't have an account?
+            <a
+              href="#"
+              class="text-primary hover:text-primary-variant font-medium transition-colors ml-1"
+            >
+              Sign up
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="text-center mt-6">
+      <p class="text-xs text-gray-400">
+        By signing in, you agree to our
+        <a href="#" class="text-primary hover:underline">Terms of Service</a>
+        and
+        <a href="#" class="text-primary hover:underline">Privacy Policy</a>
+      </p>
+    </div>
+  </div>
+</div>
