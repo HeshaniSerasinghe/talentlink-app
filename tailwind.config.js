@@ -1,6 +1,27 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
+    './src/**/*.{html,ts}'
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: '#FFFFFF',
+        primary: '#222831',
+        'primary-variant': '#393E46',
+        secondary: '#DFD0B8',
+        error: '#B00020'
+      },
+      fontFamily: {
+        nunito: ['Nunito', 'ui-sans-serif', 'system-ui']
+      }
+    }
+  },
+  plugins: []
+};
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
     "./src/**/*.{html,ts}", // This tells Tailwind to scan all your Angular files
   ],
   theme: {
