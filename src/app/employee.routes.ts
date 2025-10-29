@@ -5,6 +5,7 @@ import { EmployeeDashboardComponent } from './pages/employee-dashboard/employee-
 import { ProfileSkillsComponent } from './pages/profile-skills/profile-skills.component';
 import { EmployeeCoursesComponent } from './pages/employee-courses/employee-courses.component';
 import { EmployeeLearningComponent } from './pages/employee-learning/employee-learning.component';
+import { ModulePageComponent } from './components/module-page/module-page.component';
 
 export const routes: Routes = [
   {
@@ -16,6 +17,7 @@ export const routes: Routes = [
       { path: 'profile', component: ProfileSkillsComponent },
       { path: 'courses', component: EmployeeCoursesComponent },
       { path: 'learning', component: EmployeeLearningComponent },
+      { path: 'modules', component: ModulePageComponent },
     ],
   },
 ];
