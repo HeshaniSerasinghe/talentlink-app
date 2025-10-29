@@ -1,0 +1,10 @@
+/* Minimal: rely on Tailwind for most styling */
+.card-enter {
+  opacity: 0;
+  transform: translateY(6px);
+}
+.card-enter.card-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 300ms ease;
+}

@@ -1,11 +1,27 @@
 <div class="max-w-5xl mx-auto p-6 space-y-10 bg-gray-50 min-h-screen">
 
+  <!-- Hero banner -->
+  <div class="rounded-2xl overflow-hidden shadow">
+    <div class="bg-gradient-to-r from-primary to-primary-variant text-white p-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-extrabold tracking-tight">My Profile</h1>
+          <p class="text-white/80 text-sm mt-1">Keep your skills and certifications up to date</p>
+        </div>
+        <div class="text-right">
+          <span class="px-3 py-1 rounded-full bg-white/15 text-white text-sm">{{ employee.department }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Profile Header -->
-  <section class="flex flex-col sm:flex-row items-center gap-6 bg-white rounded-2xl shadow-md p-6">
+  <section class="flex flex-col sm:flex-row items-center gap-6 bg-white rounded-2xl shadow-md p-6 opacity-0 translate-y-2 transition duration-300 ease-out"
+           [class.opacity-100]="loaded" [class.translate-y-0]="loaded">
     <img 
       [src]="employee.photo" 
       alt="Employee Photo" 
-      class="w-32 h-32 rounded-full border-4 border-blue-500 object-cover shadow"
+      class="w-32 h-32 rounded-full border-4 border-blue-500 object-cover shadow transition-transform duration-300 hover:scale-[1.02]"
     >
     <div class="text-center sm:text-left">
       <h2 class="text-2xl font-bold text-gray-800">{{ employee.name }}</h2>
@@ -15,12 +31,15 @@
   </section>
 
   <!-- Certifications -->
-  <section class="bg-white rounded-2xl shadow-md p-6">
+  <section class="bg-white rounded-2xl shadow-md p-6 opacity-0 translate-y-2 transition duration-300 ease-out"
+           [class.opacity-100]="loaded" [class.translate-y-0]="loaded">
     <h3 class="text-xl font-semibold mb-4">🎓 My Certifications</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
       <div 
-        class="flex items-center gap-4 bg-gray-50 p-4 rounded-xl border hover:shadow transition"
-        *ngFor="let cert of certifications"
+        class="flex items-center gap-4 bg-gray-50 p-4 rounded-xl border hover:shadow-md hover:-translate-y-0.5 transition duration-300 ease-out opacity-0 translate-y-2"
+        *ngFor="let cert of certifications; let i = index"
+        [class.opacity-100]="loaded" [class.translate-y-0]="loaded"
+        [style.transitionDelay]="(i * 60) + 'ms'"
       >
         <div class="text-3xl">{{ cert.badge }}</div>
         <div>
@@ -32,17 +51,19 @@
   </section>
 
   <!-- Skills -->
-  <section class="bg-white rounded-2xl shadow-md p-6">
+  <section class="bg-white rounded-2xl shadow-md p-6 opacity-0 translate-y-2 transition duration-300 ease-out"
+           [class.opacity-100]="loaded" [class.translate-y-0]="loaded">
     <h3 class="text-xl font-semibold mb-4">🧠 My Skills</h3>
     <div class="space-y-4">
-      <div *ngFor="let s of skills" class="space-y-1">
+      <div *ngFor="let s of skills; let i = index" class="space-y-1 transition duration-300 ease-out opacity-0 translate-y-2"
+           [class.opacity-100]="loaded" [class.translate-y-0]="loaded" [style.transitionDelay]="(i * 60) + 'ms'">
         <div class="flex justify-between text-sm font-medium text-gray-700">
           <span>{{ s.skill }}</span>
-          <span class="text-blue-600">{{ s.level }}</span>
+          <span class="text-primary">{{ s.level }}</span>
         </div>
         <div class="w-full bg-gray-200 rounded-full h-2">
           <div 
-            class="bg-blue-500 h-2 rounded-full transition-all duration-300" 
+            class="h-2 rounded-full transition-all duration-300 bg-gradient-to-r from-primary to-primary-variant" 
             [style.width.%]="s.progress"
           ></div>
         </div>

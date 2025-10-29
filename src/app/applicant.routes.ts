@@ -5,6 +5,8 @@ import { ModulePageComponent } from './components/module-page/module-page.compon
 import { QuizPageComponent } from './components/quiz-page/quiz-page.component';
 import { ApplicantDashboardComponent } from './components/applicant-dashboard/applicant-dashboard.component';
 import { PathwayCompleteComponent } from './components/pathway-complete/pathway-complete.component';
+import { ApplicantJobsComponent } from './pages/applicant-jobs/applicant-jobs.component';
+import { JobDetailsComponent } from './pages/job-details/job-details.component';
 
 export const routes: Routes = [
 	{
@@ -16,6 +18,8 @@ export const routes: Routes = [
 			{ path: 'modules', component: ModulePageComponent },
 			{ path: 'quiz', component: QuizPageComponent },
 				{ path: 'pathway', component: PathwayCompleteComponent },
+      { path: 'jobs', component: ApplicantJobsComponent },
+      { path: 'job-details/:id', component: JobDetailsComponent },
 		],
 	},
 ];

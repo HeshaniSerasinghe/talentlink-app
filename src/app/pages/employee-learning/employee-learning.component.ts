@@ -19,18 +19,18 @@ export class EmployeeLearningComponent implements AfterViewInit {
   loaded = false;
 
   inProgress: LearningItem[] = [
-    { title: 'Advanced Angular', type: 'course', status: 'in-progress', progress: 45 },
-    { title: 'Data Privacy & Security', type: 'course', status: 'in-progress', progress: 20 },
+    { title: 'GMP Compliance Training', type: 'course', status: 'in-progress', progress: 45 },
+    { title: 'Good Storage Practices (GSP)', type: 'course', status: 'in-progress', progress: 20 },
   ];
 
   completed: LearningItem[] = [
-    { title: 'Workplace Safety', type: 'course', status: 'completed' },
-    { title: 'Code of Conduct', type: 'course', status: 'completed' },
+    { title: 'Introduction to Pharmaceutical Safety', type: 'course', status: 'completed' },
+    { title: '21 CFR Part 11 Compliance', type: 'course', status: 'completed' },
   ];
 
   recommended: LearningItem[] = [
-    { title: 'Time Management', type: 'course', status: 'recommended' },
-    { title: 'Effective Communication', type: 'course', status: 'recommended' },
+    { title: 'Pharmacovigilance Basics', type: 'course', status: 'recommended' },
+    { title: 'CSV: Computer System Validation', type: 'course', status: 'recommended' },
   ];
 
   ngAfterViewInit(): void {

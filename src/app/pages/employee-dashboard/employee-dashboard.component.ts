@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Course {
@@ -19,31 +19,37 @@ interface CareerStage {
   templateUrl: './employee-dashboard.component.html',
   styleUrls: ['./employee-dashboard.component.css']
 })
-export class EmployeeDashboardComponent {
-  employeeName = 'Mithila Rasanjith';
+export class EmployeeDashboardComponent implements AfterViewInit {
+  loaded = false;
+  employeeName = 'Nuwan Perera';
   today = new Date();
 
   mandatoryCourses: Course[] = [
-    { title: 'Workplace Safety', dueDate: '2025-11-15', progress: 100 },
-    { title: 'Code of Conduct', dueDate: '2025-12-01', progress: 70 },
-    { title: 'Data Privacy & Security', dueDate: '2025-12-20', progress: 30 }
+    { title: 'GMP Compliance Training', dueDate: '2025-12-01', progress: 70 },
+    { title: 'Good Storage Practices (GSP)', dueDate: '2025-12-15', progress: 30 },
+    { title: '21 CFR Part 11 Compliance', dueDate: '2025-11-15', progress: 100 }
   ];
 
   careerPath: CareerStage[] = [
-    { title: 'Junior IT Associate', completed: true },
-    { title: 'Software Engineer', completed: true },
-    { title: 'Senior Developer', completed: false },
-    { title: 'Team Lead', completed: false }
+    { title: 'CSV Analyst', completed: true },
+    { title: 'Validation Engineer', completed: true },
+    { title: 'Senior CSV Specialist', completed: false },
+    { title: 'QA Systems Lead', completed: false }
   ];
 
   announcements = [
     { message: 'System maintenance scheduled for Nov 10th, 9–11 AM', type: 'info' },
-    { message: 'New course available: Advanced Angular', type: 'new' },
-    { message: 'Submit Q4 goals by November 30th', type: 'reminder' }
+    { message: 'New module released: Pharmacovigilance Basics', type: 'success' },
+    { message: 'Review Data Integrity (ALCOA+) policy updates by Nov 30th', type: 'warning' }
   ];
 
   get overallProgress(): number {
     const total = this.mandatoryCourses.reduce((acc, c) => acc + c.progress, 0);
     return Math.round(total / this.mandatoryCourses.length);
+  }
+
+  ngAfterViewInit(): void {
+    // Trigger transitions after initial render
+    setTimeout(() => (this.loaded = true), 0);
   }
 }

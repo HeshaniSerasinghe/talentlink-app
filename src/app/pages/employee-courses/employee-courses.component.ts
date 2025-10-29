@@ -18,10 +18,10 @@ interface Course {
 export class EmployeeCoursesComponent {
   filter = 'all';
   courses: Course[] = [
-    { title: 'Workplace Safety', category: 'Compliance', progress: 100 },
-    { title: 'Code of Conduct', category: 'Compliance', progress: 70, due: '2025-12-01' },
-    { title: 'Advanced Angular', category: 'Technical', progress: 30, due: '2025-11-30' },
-    { title: 'Time Management', category: 'Soft Skills', progress: 0 },
+    { title: 'GMP Compliance Training', category: 'Compliance', progress: 70, due: '2025-12-01' },
+    { title: 'Good Storage Practices (GSP)', category: 'Pharmaceutical', progress: 30, due: '2025-11-30' },
+    { title: '21 CFR Part 11 Compliance', category: 'Compliance', progress: 100 },
+    { title: 'CSV: Computer System Validation', category: 'Systems', progress: 0 },
   ];
 
   get filtered(): Course[] {
