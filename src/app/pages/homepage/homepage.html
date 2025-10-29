@@ -1,5 +1,5 @@
 <!-- Navigation Bar -->
-<nav class="bg-primary py-4 shadow-md sticky top-0 z-50">
+<nav class="bg-gradient-to-r from-primary to-primary-variant py-4 shadow-md sticky top-0 z-50">
   <div class="max-w-7xl mx-auto px-8 flex justify-between items-center">
     <div class="logo">
       <h1 class="text-white text-3xl font-bold m-0">TalentLink</h1>
@@ -8,22 +8,23 @@
   <li><a routerLink="/home" routerLinkActive="active" class="text-white no-underline font-medium transition-colors hover:text-secondary">Home</a></li>
       <li><a (click)="scrollToSection('jobs')" class="text-white no-underline font-medium transition-colors hover:text-secondary cursor-pointer">All Jobs</a></li>
       <li><a (click)="scrollToSection('about')" class="text-white no-underline font-medium transition-colors hover:text-secondary cursor-pointer">About Us</a></li>
-  <li><a routerLink="/login" class="bg-primary-variant text-white no-underline px-6 py-2 rounded font-medium transition-colors hover:bg-primary">Login</a></li>
+  <li><a routerLink="/login" class="bg-white/10 text-white no-underline px-6 py-2 rounded font-medium backdrop-blur transition-all hover:bg-white/20 hover:shadow">Login</a></li>
     </ul>
   </div>
 </nav>
 
 <!-- Hero Section -->
-<section class="bg-gradient-to-br from-primary to-primary-variant py-24 px-8 text-center text-white">
-  <div class="max-w-4xl mx-auto">
+<section class="relative bg-gradient-to-br from-primary to-primary-variant py-24 px-8 text-center text-white overflow-hidden">
+  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.15),transparent_60%)]"></div>
+  <div class="relative max-w-4xl mx-auto">
     <h1 class="text-5xl font-bold mb-4 text-white">Find Your Dream Career</h1>
     <p class="text-xl mb-10 opacity-95 text-secondary">Join our companies and grow with industry-leading training programs</p>
     
     <!-- Main Search Bar -->
-    <div class="flex max-w-2xl mx-auto shadow-lg rounded-lg overflow-visible relative bg-white">
+    <div class="flex max-w-2xl mx-auto shadow-xl rounded-full overflow-visible relative bg-white/95 ring-2 ring-white/20 focus-within:ring-white/50">
       <input 
         type="text" 
-        class="flex-1 px-6 py-4 border-0 text-base outline-none font-nunito bg-white text-gray-900" 
+        class="flex-1 px-6 py-4 border-0 text-base outline-none font-nunito bg-transparent text-gray-900 placeholder:text-gray-500" 
         placeholder="Search by job title, company, location, job type, or description..."
         [(ngModel)]="searchQuery"
         (keyup.enter)="onSearch()"
@@ -31,13 +32,13 @@
       >
       <button 
         *ngIf="searchQuery" 
-        (click)="clearSearch()" 
-        class="absolute right-32 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 px-2 text-xl cursor-pointer bg-transparent border-0 z-10"
+        (click)="clearSearch()"
+        class="absolute right-36 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 px-2 text-xl cursor-pointer bg-transparent border-0 z-10"
         title="Clear search"
         type="button">
         ✕
       </button>
-      <button class="bg-primary-variant text-white border-0 px-8 py-4 cursor-pointer text-base font-semibold transition-colors hover:bg-primary font-nunito" (click)="onSearch()" type="button">
+      <button class="bg-gradient-to-r from-primary to-primary-variant text-white border-0 px-8 py-4 cursor-pointer text-base font-semibold transition-opacity hover:opacity-90 font-nunito rounded-r-full" (click)="onSearch()" type="button">
         <span>Search</span>
       </button>
     </div>
@@ -46,7 +47,7 @@
     <div class="mt-6 flex justify-center">
       <a
         routerLink="/register"
-        class="inline-block bg-white text-primary border-0 px-8 py-3 cursor-pointer text-base font-semibold rounded-lg shadow hover:shadow-md transition-colors hover:bg-gray-100"
+        class="inline-block bg-white text-primary border-0 px-8 py-3 cursor-pointer text-base font-semibold rounded-lg shadow hover:shadow-md transition-all hover:bg-gray-100 ring-1 ring-white/40"
       >
         Sign up
       </a>
@@ -57,10 +58,11 @@
 <!-- Company Filter Links -->
 <section class="py-16 bg-white">
   <div class="max-w-7xl mx-auto px-8">
-    <h2 class="text-center text-4xl mb-4 text-primary font-bold">Explore Our Companies</h2>
+    <h2 class="text-center text-4xl mb-4 font-bold bg-gradient-to-r from-primary to-primary-variant bg-clip-text text-transparent">Explore Our Companies</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <div class="bg-white p-8 rounded-xl text-center cursor-pointer transition-all shadow-md border border-secondary hover:-translate-y-2 hover:shadow-xl hover:border-primary-variant" 
+      <div class="bg-white p-8 rounded-xl text-center cursor-pointer transition-all shadow-md border border-transparent hover:-translate-y-2 hover:shadow-2xl hover:border-primary/20" 
            *ngFor="let company of companies" (click)="filterByCompany(company.name)">
+        <div class="h-1 w-full bg-gradient-to-r from-primary to-primary-variant mb-4 rounded-full"></div>
         <div class="text-5xl mb-4">{{ company.icon }}</div>
         <h3 class="text-primary mb-2 text-lg font-bold">{{ company.name }}</h3>
         <p class="text-primary-variant text-sm font-semibold">{{ company.openPositions }} open positions</p>
@@ -73,7 +75,7 @@
 <section id="jobs" class="py-16 bg-gray-50">
   <div class="max-w-7xl mx-auto px-8">
     <div class="flex justify-between items-center mb-6">
-      <h2 class="text-4xl text-primary font-bold">Featured Opportunities</h2>
+      <h2 class="text-4xl font-bold bg-gradient-to-r from-primary to-primary-variant bg-clip-text text-transparent">Featured Opportunities</h2>
       <div *ngIf="isSearchActive" class="flex items-center gap-4">
         <span class="text-primary-variant font-semibold">{{ searchResultsText }}</span>
         <button (click)="clearSearch()" class="text-sm text-primary hover:text-primary-variant underline cursor-pointer bg-transparent border-0 font-nunito">
@@ -94,18 +96,18 @@
     
     <!-- Jobs Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" *ngIf="filteredJobs.length > 0">
-      <div class="bg-white border border-secondary rounded-xl p-6 transition-all hover:shadow-xl hover:border-primary-variant" *ngFor="let job of filteredJobs">
+      <div class="bg-white border border-transparent rounded-xl p-6 transition-all hover:shadow-2xl hover:border-primary/20" *ngFor="let job of filteredJobs">
         <div class="flex justify-between items-start mb-2">
           <h3 class="text-primary text-xl m-0 flex-1 font-bold">{{ job.title }}</h3>
-          <span class="bg-secondary text-primary px-3 py-1 rounded-full text-xs font-semibold ml-2">{{ job.type }}</span>
+          <span class="bg-gradient-to-r from-secondary to-primary-variant/30 text-primary px-3 py-1 rounded-full text-xs font-semibold ml-2">{{ job.type }}</span>
         </div>
         <p class="text-primary-variant font-semibold my-2">{{ job.company }}</p>
         <p class="text-primary-variant text-sm my-1">📍 {{ job.location }}</p>
         <p class="text-gray-600 my-4 leading-relaxed">{{ job.description }}</p>
         <div class="flex gap-4 mt-6">
-          <button class="flex-1 py-3 border-0 rounded cursor-pointer font-semibold transition-all bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white font-nunito" 
+          <button class="flex-1 py-3 rounded cursor-pointer font-semibold transition-all bg-white text-primary border border-primary hover:bg-gradient-to-r hover:from-primary hover:to-primary-variant hover:text-white font-nunito" 
                   (click)="viewJobDetails(job.id)">View Details</button>
-          <button class="flex-1 py-3 border-0 rounded cursor-pointer font-semibold transition-all bg-primary text-white hover:bg-primary-variant font-nunito" 
+          <button class="flex-1 py-3 border-0 rounded cursor-pointer font-semibold transition-all bg-gradient-to-r from-primary to-primary-variant text-white hover:opacity-90 font-nunito" 
                   (click)="applyNow(job.id)">Apply Now</button>
         </div>
       </div>
@@ -116,7 +118,7 @@
 <!-- About Section -->
 <section id="about" class="py-16 bg-white">
   <div class="max-w-7xl mx-auto px-8">
-    <h2 class="text-center text-4xl mb-4 text-primary font-bold">About TalentLink</h2>
+    <h2 class="text-center text-4xl mb-4 font-bold bg-gradient-to-r from-primary to-primary-variant bg-clip-text text-transparent">About TalentLink</h2>
     <div class="max-w-4xl mx-auto text-center text-primary-variant leading-relaxed text-lg">
       <p class="mb-4">TalentLink is part of the Chandrasiri Group of Companies, a trusted name in Sri Lanka's pharmaceutical distribution, 
       food & beverage, and hospitality sectors. We believe in growing talent from within through comprehensive training programs.</p>
@@ -129,7 +131,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="bg-primary text-white pt-12 pb-4 mt-16">
+<footer class="bg-gradient-to-r from-primary to-primary-variant text-white pt-12 pb-4 mt-16">
   <div class="max-w-7xl mx-auto px-8">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
       <div>
