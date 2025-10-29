@@ -22,6 +22,13 @@ import { LearningModule } from '../../models/module.model';
           </div>
         </div>
 
+        <!-- Quick actions -->
+        <div class="flex flex-wrap gap-3 mb-6">
+          <button class="px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-variant transition" (click)="goToModules()">Go to Modules</button>
+          <button class="px-4 py-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition" (click)="goToQuiz()">Take Quiz</button>
+          <button class="px-4 py-2 rounded-lg bg-secondary text-primary hover:bg-secondary/80 transition" (click)="goToPathway()">View Pathway</button>
+        </div>
+
         <div class="mb-8">
           <div class="flex justify-between items-center mb-2">
             <span class="text-sm font-medium text-gray-700">Overall Progress</span>
@@ -35,8 +42,16 @@ import { LearningModule } from '../../models/module.model';
             </div>
           </div>
           <p class="text-xs text-gray-500 mt-2 text-right">
-            {{ completedCount }} of {{ modules().length }} modules completed
+            <span>{{ completedCount }} of {{ modules().length }} modules completed</span>
+            <span class="text-xs px-2 py-0.5 rounded-full" [class]="progress() === 100 ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'">
+              {{ progress() === 100 ? 'Completed' : 'In Progress' }}
+            </span>
           </p>
+        </div>
+
+        <!-- Next up -->
+        <div class="mb-2" *ngIf="nextModule as next">
+          <p class="text-sm text-gray-600">Next up: <span class="font-semibold">{{ next.title }}</span></p>
         </div>
 
         <div class="grid gap-4">
@@ -92,6 +107,10 @@ export class ApplicantDashboardComponent {
     return Math.round((done / total) * 100);
   });
 
+  get nextModule() {
+    return this.modules().find((m) => !m.completed) || null;
+  }
+
   startModule(m: LearningModule) {
     // For demo: toggle completion when clicking start/continue
     const arr = this.modules().map((mm) => (mm.id === m.id ? { ...mm, completed: true } : mm));
@@ -101,7 +120,19 @@ export class ApplicantDashboardComponent {
     const allDone = this.modules().every((mod) => mod.completed);
     if (allDone) {
       // small timeout to allow UI update
-      setTimeout(() => this.router.navigate(['/complete']), 300);
+      setTimeout(() => this.router.navigate(['/applicant/pathway']), 300);
     }
+  }
+
+  goToModules() {
+    this.router.navigate(['/applicant/modules']);
+  }
+
+  goToQuiz() {
+    this.router.navigate(['/applicant/quiz']);
+  }
+
+  goToPathway() {
+    this.router.navigate(['/applicant/pathway']);
   }
 }
