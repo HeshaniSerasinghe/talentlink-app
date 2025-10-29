@@ -48,7 +48,8 @@ export class AdminLoginComponent implements OnInit {
             localStorage.setItem('applicantToken', token);
             localStorage.setItem('applicantUser', JSON.stringify(user));
             this.isLoading.set(false);
-            this.router.navigate(['/applicant/modules']);
+            // Land applicants on their dashboard after login
+            this.router.navigate(['/applicant/dashboard']);
             return;
         }
 
